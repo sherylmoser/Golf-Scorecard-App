@@ -1,0 +1,35 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  background-color: #009598;
+  color: white;
+}
+.navbar i {
+  margin-right: 15px;
+}
+
+.formContainer {
+  margin: 30px auto;
+}
+.formContainer select {
+  margin-bottom: 22.5px;
+}
+.formContainer input {
+  margin-bottom: 22.5px;
+}
+.formContainer .play {
+  background-color: #009598;
+  color: white;
+}
+
+table th {
+  width: 75px;
+}
+
+.hitsInput {
+  width: 50px;
+}
+
+/*# sourceMappingURL=style.css.map */

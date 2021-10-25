@@ -1,0 +1,35 @@
+$teal: #009598;
+$spacing: 15px;
+$font: 'Montserrat', sans-serif;
+
+body {
+    font-family: $font;
+}
+.navbar {
+    background-color: $teal;
+    color: white;
+    i {
+        margin-right: $spacing;
+    }
+}
+.formContainer {
+    margin: $spacing*2 auto;
+    select {
+        margin-bottom: $spacing*1.5;
+    }
+    input {
+        margin-bottom: $spacing*1.5;
+    }
+    .play {
+        background-color: $teal;
+        color: white;
+    }
+}
+table {
+    th {
+        width: 75px;
+    }
+}
+.hitsInput {
+    width: 50px;
+}
