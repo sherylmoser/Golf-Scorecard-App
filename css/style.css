@@ -24,6 +24,13 @@ body {
   color: white;
 }
 
+.tableContainer {
+  margin: 15px 0;
+}
+
+table {
+  text-align: center;
+}
 table th {
   width: 75px;
 }

@@ -1,12 +1,21 @@
 function getAvailableCourses() {
-    return fetch('https://golf-courses-api.herokuapp.com/courses/').then(
-        function (response) {
-            return response.json();
-        }
-    );
+    return new Promise((resolve, reject) => {
+        fetch('https://golf-courses-api.herokuapp.com/courses/')
+            .then(response => response.json())
+            .then(data => resolve(data));
+    });
 }
-let courses = getAvailableCourses();
-let courseSelectionHTML = '';
-courses.forEach((course) => {
-    courseSelectionHTML += `<option value="${course.id}">${course.name}</option>`
-})
+let coursesPromise = getAvailableCourses();
+
+coursesPromise.then(() => {
+    for (let course in courses) {
+        console.log(course.name)
+    }
+}
+
+)
+
+// let courseSelectionHTML = '';
+// courses.forEach((course) => {
+//     courseSelectionHTML += `<option value="${course.id}">${course.name}</option>`
+// })

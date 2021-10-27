@@ -25,7 +25,11 @@ body {
         color: white;
     }
 }
+.tableContainer {
+    margin: $spacing 0;
+}
 table {
+    text-align: center;
     th {
         width: 75px;
     }
