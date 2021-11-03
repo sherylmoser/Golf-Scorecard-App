@@ -19,6 +19,7 @@ function getCourseInfo(courseId) {
 
 function onCourseSelection(event) {
     const courseId = event.target.value
+    localStorage.setItem('courseId', courseId)
     getCourseInfo(courseId).then(data => {
         const course = data.data;
         const holes = course.holes;
@@ -30,10 +31,14 @@ function onCourseSelection(event) {
     });
 }
 
+function saveTeeSelection(event) {
+    const teeId = event.target.value;
+    localStorage.setItem('teeId', teeId)
+}
+
 class Player {
-    constructor(name, id = getNextId(), scores = []) {
+    constructor(name, scores = []) {
         this.name = name;
-        this.id = id;
         this.scores = scores;
     }
     addScore(score) {
@@ -41,18 +46,37 @@ class Player {
     }
 }
 
-const players = [];
+const players = retrieve();
 
-function getNextId() {
-    return 'player' + (players.length + 1);
-}
 
 function addPlayer(event) {
     let newPlayer = new Player(event.target.value);
-    players.push(newPlayer);
+    let playerId = event.target.id
+    players[playerId] = newPlayer;
     console.log(players)
+    save()
 }
 
+
+
+function save() {
+    const playersArrayString = JSON.stringify(players);
+    localStorage.setItem('playersArrayString', playersArrayString)
+}
+
+function retrieve() {
+    const playersArrayString = localStorage.getItem('playersArrayString');
+    const playersArrayObject = JSON.parse(playersArrayString)
+
+    if (playersArrayObject) {
+        const playersObjects = playersArrayObject.map((player) => {
+            let players = new Player(player.name, player.scores)
+            return players;
+        })
+        return playersObjects;
+    }
+    return []
+}
 
 
 

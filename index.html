@@ -27,23 +27,19 @@
             </div>
         </nav>
         <div class="formContainer row d-flex justify-content-center">
-            <form action="scorecard.html" class="col-lg-6">
+            <form action="scorecard.html" class="col-lg-6" method="GET">
                 <label for="courseSelect">Select Your Course</label>
                 <select onchange="onCourseSelection(event)" class="form-select" id="courseSelect"
                     aria-label="select course">
                 </select>
                 <label for="teeSelect">Select Your Tee</label>
-                <select class="form-select" id="teeSelect" aria-label="select tee">
+                <select class="form-select" onchange="saveTeeSelection(event)" id="teeSelect" aria-label="select tee">
                     <option value="1">Select Your Tee</option>
                 </select>
-                <input type="text" id="player1" class="form-control" onchange="addPlayer(event)"
-                    placeholder="Player One">
-                <input type="text" id="player2" class="form-control" onchange="addPlayer(event)"
-                    placeholder="Player Two">
-                <input type="text" id="player3" class="form-control" onchange="addPlayer(event)"
-                    placeholder="Player Three">
-                <input type="text" id="player4" class="form-control" onchange="addPlayer(event)"
-                    placeholder="Player Four">
+                <input type="text" id="0" class="form-control" onchange="addPlayer(event)" placeholder="Player One">
+                <input type="text" id="1" class="form-control" onchange="addPlayer(event)" placeholder="Player Two">
+                <input type="text" id="2" class="form-control" onchange="addPlayer(event)" placeholder="Player Three">
+                <input type="text" id="3" class="form-control" onchange="addPlayer(event)" placeholder="Player Four">
                 <input type="submit" value="Play" class="btn play col-12"></input>
             </form>
         </div>
