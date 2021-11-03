@@ -31,21 +31,20 @@
                 <label for="courseSelect">Select Your Course</label>
                 <select onchange="onCourseSelection(event)" class="form-select" id="courseSelect"
                     aria-label="select course">
-                    <!-- <option value="1">Fox Hollow</option>
-                    <option value="2">Thanksgiving Point</option>
-                    <option value="3">Spanish Oaks</option> -->
                 </select>
                 <label for="teeSelect">Select Your Tee</label>
                 <select class="form-select" id="teeSelect" aria-label="select tee">
-                    <option value="1">Men's</option>
-                    <option value="2">Women's</option>
-                    <option value="3">Pro</option>
+                    <option value="1">Select Your Tee</option>
                 </select>
-                <input type="text" id="player1" class="form-control" placeholder="Player One">
-                <input type="text" id="player2" class="form-control" placeholder="Player Two">
-                <input type="text" id="player3" class="form-control" placeholder="Player Three">
-                <input type="text" id="player4" class="form-control" placeholder="Player Four">
-                <button type="submit" class="btn play col-12">Play</button>
+                <input type="text" id="player1" class="form-control" onchange="addPlayer(event)"
+                    placeholder="Player One">
+                <input type="text" id="player2" class="form-control" onchange="addPlayer(event)"
+                    placeholder="Player Two">
+                <input type="text" id="player3" class="form-control" onchange="addPlayer(event)"
+                    placeholder="Player Three">
+                <input type="text" id="player4" class="form-control" onchange="addPlayer(event)"
+                    placeholder="Player Four">
+                <input type="submit" value="Play" class="btn play col-12"></input>
             </form>
         </div>
     </div>
