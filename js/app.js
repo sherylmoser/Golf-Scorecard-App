@@ -46,16 +46,27 @@ class Player {
     }
 }
 
-const players = retrieve();
+const players = playerRetrieve();
 
 
 function addPlayer(event) {
-    let newPlayer = new Player(event.target.value);
+    const newPlayer = new Player(event.target.value);
     let playerId = event.target.id
     players[playerId] = newPlayer;
-    console.log(players)
     save()
 }
+
+function courseRetrieve() {
+    return localStorage.getItem('courseId')
+}
+
+const courseId = courseRetrieve();
+
+function teeTypeRetrieve() {
+    return localStorage.getItem('teeId')
+}
+
+const teeTypeId = teeTypeRetrieve();
 
 function playerRender() {
     players.forEach(player => {
@@ -92,7 +103,7 @@ function save() {
     localStorage.setItem('playersArrayString', playersArrayString)
 }
 
-function retrieve() {
+function playerRetrieve() {
     const playersArrayString = localStorage.getItem('playersArrayString');
     const playersArrayObject = JSON.parse(playersArrayString)
 
