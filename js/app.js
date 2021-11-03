@@ -57,6 +57,34 @@ function addPlayer(event) {
     save()
 }
 
+function playerRender() {
+    players.forEach(player => {
+        let frontNinePlayerRowHTML = document.createElement('tr')
+        frontNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>
+            <td><input id="${player.name}Scores-1" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-2" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-3" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-4" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-5" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-6" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-7" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-8" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-9" class="hitsInput" type="number"></td>`;
+        document.getElementById('frontNine').appendChild(frontNinePlayerRowHTML);
+        let backNinePlayerRowHTML = document.createElement('tr')
+        backNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>
+            <td><input id="${player.name}Scores-10" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-11" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-12" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-13" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-14" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-15" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-16" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-17" class="hitsInput" type="number"></td>
+            <td><input id="${player.name}Scores-18" class="hitsInput" type="number"></td>`;
+        document.getElementById('backNine').appendChild(backNinePlayerRowHTML);
+    })
+}
 
 
 function save() {

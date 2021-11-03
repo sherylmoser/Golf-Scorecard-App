@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body onload="playerRender()">
     <div class="container-fluid">
         <nav class="navbar">
             <div class="container-fluid">
@@ -43,27 +43,15 @@
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="frontNine">
                     <tr>
-                        <th scope="row">Yards</th>
+                        <th id="yards" scope="row">Yards</th>
                     </tr>
                     <tr>
-                        <th scope="row">Par</th>
+                        <th id="par" scope="row">Par</th>
                     </tr>
                     <tr>
-                        <th scope="row">Handicap</th>
-                    </tr>
-                    <tr id="player1">
-                        <th scope="row">Player One</th>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
+                        <th id="handicap" scope="row">Handicap</th>
                     </tr>
                 </tbody>
             </table>
@@ -85,27 +73,15 @@
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="backNine">
                     <tr>
-                        <th scope="row">Yards</th>
+                        <th id="yards" scope="row">Yards</th>
                     </tr>
                     <tr>
-                        <th scope="row">Par</th>
+                        <th id="par" scope="row">Par</th>
                     </tr>
                     <tr>
-                        <th scope="row">Handicap</th>
-                    </tr>
-                    <tr id="player1">
-                        <th scope="row">Player One</th>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
-                        <td><input class="hitsInput" type="number"></td>
+                        <th id="handicap" scope="row">Handicap</th>
                     </tr>
                 </tbody>
             </table>
