@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="playerRender()">
+<body onload="tableRender()">
     <div class="container-fluid">
         <nav class="navbar">
             <div class="container-fluid">
@@ -40,18 +40,18 @@
                         <th scope="col">7</th>
                         <th scope="col">8</th>
                         <th scope="col">9</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Out</th>
                     </tr>
                 </thead>
                 <tbody id="frontNine">
-                    <tr>
-                        <th id="yards" scope="row">Yards</th>
+                    <tr id="frontYards">
+                        <th scope="row">Yards</th>
                     </tr>
-                    <tr>
-                        <th id="par" scope="row">Par</th>
+                    <tr id="frontPar">
+                        <th scope="row">Par</th>
                     </tr>
-                    <tr>
-                        <th id="handicap" scope="row">Handicap</th>
+                    <tr id="frontHandicap">
+                        <th scope="row">Handicap</th>
                     </tr>
                 </tbody>
             </table>
@@ -70,18 +70,19 @@
                         <th scope="col">16</th>
                         <th scope="col">17</th>
                         <th scope="col">18</th>
+                        <th scope="col">In</th>
                         <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody id="backNine">
-                    <tr>
-                        <th id="yards" scope="row">Yards</th>
+                    <tr id="backYards">
+                        <th scope="row">Yards</th>
                     </tr>
-                    <tr>
-                        <th id="par" scope="row">Par</th>
+                    <tr id="backPar">
+                        <th scope="row">Par</th>
                     </tr>
-                    <tr>
-                        <th id="handicap" scope="row">Handicap</th>
+                    <tr id="backHandicap">
+                        <th scope="row">Handicap</th>
                     </tr>
                 </tbody>
             </table>
