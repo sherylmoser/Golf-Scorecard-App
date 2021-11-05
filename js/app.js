@@ -65,7 +65,7 @@ function yardsRender() {
         for (let i = 0; i < 9; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const yards = teeType.yards;
-            frontNineYardsHTML += `<td class="yardsOut"scope="row">${yards}</td>`;
+            frontNineYardsHTML += `<td class="yardsOut" scope="row">${yards}</td>`;
         }
         frontNineYardsHTML += '<th id="yardsOut" scope="row"></th>'
         document.getElementById('frontYards').innerHTML = frontNineYardsHTML;
@@ -155,6 +155,9 @@ function handicapRender() {
 
 function playerRender() {
     players.forEach(player => {
+        if (player.name == '') {
+            return;
+        }
         let frontNinePlayerRowHTML = document.createElement('tr')
         frontNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>`;
         for (let i = 0; i < 9; i++) {
@@ -235,7 +238,6 @@ function addPlayerScore() {
         }
         playerInCell.innerText = inTotal;
         playerTotalCell.innerText = outTotal + inTotal;
-
     })
 }
 
