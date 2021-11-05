@@ -157,18 +157,21 @@ function playerRender() {
     players.forEach(player => {
         let frontNinePlayerRowHTML = document.createElement('tr')
         frontNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>`;
-        for (let i = 1; i < 10; i++) {
-            frontNinePlayerRowHTML.innerHTML += `<td><input id="${player.name}Score${i}" class="hitsInput" type="number"></td>`;
+        for (let i = 0; i < 9; i++) {
+            frontNinePlayerRowHTML.innerHTML += `<td><input onkeyup="addPlayerScore()" 
+            id="${player.name}Score${i}" class="${player.name}Out hitsInput" type="number"></td>`;
         }
-        frontNinePlayerRowHTML.innerHTML += `<td id="${player.name}Out"></td>`;
+        frontNinePlayerRowHTML.innerHTML += `<th onkeyup="" id="${player.name}Out">0</th>`;
         document.getElementById('frontNine').appendChild(frontNinePlayerRowHTML);
 
         let backNinePlayerRowHTML = document.createElement('tr')
         backNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>`;
-        for (let i = 10; i < 19; i++) {
-            backNinePlayerRowHTML.innerHTML += `<td><input id="${player.name}Score${i}" class="hitsInput" type="number"></td>`
+        for (let i = 9; i < 18; i++) {
+            backNinePlayerRowHTML.innerHTML += `<td><input onkeyup="addPlayerScore()" 
+            id="${player.name}Score${i}" class="${player.name}Out hitsInput" type="number"></td>`
         }
-        backNinePlayerRowHTML.innerHTML += `<td id="${player.name}Total"></td>`;
+        backNinePlayerRowHTML.innerHTML += `<th id="${player.name}In">0</th>
+            <th id="${player.name}Total">0</th>`;
         document.getElementById('backNine').appendChild(backNinePlayerRowHTML);
     })
 }
@@ -206,6 +209,20 @@ function completeTotal(row) {
     let totalOut = parseInt(document.getElementById(`${row}Out`).innerText);
     let totalCell = document.getElementById(`${row}Total`);
     totalCell.innerText = totalOut + totalIn;
+}
+
+function addPlayerScore() {
+    players.forEach(player => {
+        for (let i = 0; i < 18; i++) {
+            let scoreCell = document.getElementById(`${player.name}Score${i}`).value;
+            if (scoreCell) {
+                player.scores[i] = scoreCell;
+            } else {
+                player.scores[i] = undefined;
+            }
+        }
+
+    })
 }
 
 function save() {
