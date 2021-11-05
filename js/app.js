@@ -161,7 +161,7 @@ function playerRender() {
             frontNinePlayerRowHTML.innerHTML += `<td><input onkeyup="addPlayerScore()" 
             id="${player.name}Score${i}" class="${player.name}Out hitsInput" type="number"></td>`;
         }
-        frontNinePlayerRowHTML.innerHTML += `<th onkeyup="" id="${player.name}Out">0</th>`;
+        frontNinePlayerRowHTML.innerHTML += `<th id="${player.name}Out">0</th>`;
         document.getElementById('frontNine').appendChild(frontNinePlayerRowHTML);
 
         let backNinePlayerRowHTML = document.createElement('tr')
@@ -214,13 +214,27 @@ function completeTotal(row) {
 function addPlayerScore() {
     players.forEach(player => {
         for (let i = 0; i < 18; i++) {
-            let scoreCell = document.getElementById(`${player.name}Score${i}`).value;
+            let scoreCell = parseInt(document.getElementById(`${player.name}Score${i}`).value);
             if (scoreCell) {
                 player.scores[i] = scoreCell;
             } else {
-                player.scores[i] = undefined;
+                player.scores[i] = 0;
             }
         }
+        let playerOutCell = document.getElementById(`${player.name}Out`);
+        let outTotal = 0;
+        let playerInCell = document.getElementById(`${player.name}In`);
+        let inTotal = 0;
+        let playerTotalCell = document.getElementById(`${player.name}Total`);
+        for (let i = 0; i < 9; i++) {
+            outTotal += player.scores[i];
+        }
+        playerOutCell.innerText = outTotal;
+        for (let i = 9; i < 18; i++) {
+            inTotal += player.scores[i]
+        }
+        playerInCell.innerText = inTotal;
+        playerTotalCell.innerText = outTotal + inTotal;
 
     })
 }
