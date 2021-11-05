@@ -10,7 +10,6 @@ function courseSelectionRender(courses) {
     })
     document.getElementById('courseSelect').innerHTML = courseSelectionHTML;
 }
-getAvailableCourses();
 
 function getCourseInfo(courseId) {
     return fetch(`https://golf-courses-api.herokuapp.com/courses/${courseId}`)
@@ -48,7 +47,6 @@ class Player {
 
 const players = playerRetrieve();
 
-
 function addPlayer(event) {
     const newPlayer = new Player(event.target.value);
     let playerId = event.target.id
@@ -62,23 +60,30 @@ function yardsRender() {
     getCourseInfo(currentCourseId).then(data => {
         const course = data.data;
         const holes = course.holes;
+
         let frontNineYardsHTML = '<th scope="row">Yards</th>';
         for (let i = 0; i < 9; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const yards = teeType.yards;
-            frontNineYardsHTML += `<td scope="row">${yards}</td>`;
+            frontNineYardsHTML += `<td class="yardsOut"scope="row">${yards}</td>`;
         }
-        frontNineYardsHTML += '<th id="frontYardsOut" scope="row"></th>'
+        frontNineYardsHTML += '<th id="yardsOut" scope="row"></th>'
         document.getElementById('frontYards').innerHTML = frontNineYardsHTML;
+
+        outTotal('yards')
+
         let backNineYardsHTML = '<th scope="row">Yards</th>';
         for (let i = 9; i < 18; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const yards = teeType.yards;
-            backNineYardsHTML += `<td scope="row">${yards}</td>`;
+            backNineYardsHTML += `<td class="yardsIn" scope="row">${yards}</td>`;
         }
-        backNineYardsHTML += `<th id="backYardsIn" scope="row"></th>
-            <th id="backYardsTotal" scope="row"></th>`;
+        backNineYardsHTML += `<th id="yardsIn" scope="row"></th>
+            <th id="yardsTotal" scope="row"></th>`;
         document.getElementById('backYards').innerHTML = backNineYardsHTML;
+
+        inTotal('yards');
+        completeTotal('yards');
     });
 }
 
@@ -88,23 +93,30 @@ function parRender() {
     getCourseInfo(currentCourseId).then(data => {
         const course = data.data;
         const holes = course.holes;
+
         let frontNineParHTML = '<th scope="row">Par</th>';
         for (let i = 0; i < 9; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const par = teeType.par;
-            frontNineParHTML += `<td scope="row">${par}</td>`;
+            frontNineParHTML += `<td class="parOut" scope="row">${par}</td>`;
         }
-        frontNineParHTML += '<th id="frontParOut" scope="row"></th>'
+        frontNineParHTML += '<th id="parOut" scope="row"></th>'
         document.getElementById('frontPar').innerHTML = frontNineParHTML;
+
+        outTotal('par');
+
         let backNineParHTML = '<th scope="row">Par</th>';
         for (let i = 9; i < 18; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const par = teeType.par;
-            backNineParHTML += `<td scope="row">${par}</td>`;
+            backNineParHTML += `<td class="parIn" scope="row">${par}</td>`;
         }
-        backNineParHTML += `<th id="backParIn" scope="row"></th>
-            <th id="backParTotal" scope="row"></th>`;
+        backNineParHTML += `<th id="parIn" scope="row"></th>
+            <th id="parTotal" scope="row"></th>`;
         document.getElementById('backPar').innerHTML = backNineParHTML;
+
+        inTotal('par');
+        completeTotal('par');
     });
 }
 
@@ -114,23 +126,30 @@ function handicapRender() {
     getCourseInfo(currentCourseId).then(data => {
         const course = data.data;
         const holes = course.holes;
+
         let frontNineHcpHTML = '<th scope="row">Handicap</th>';
         for (let i = 0; i < 9; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const hcp = teeType.hcp;
-            frontNineHcpHTML += `<td scope="row">${hcp}</td>`;
+            frontNineHcpHTML += `<td class="hcpOut" scope="row">${hcp}</td>`;
         }
-        frontNineHcpHTML += '<th id="frontHcpOut" scope="row"></th>'
+        frontNineHcpHTML += '<th id="hcpOut" scope="row"></th>'
         document.getElementById('frontHandicap').innerHTML = frontNineHcpHTML;
+
+        outTotal('hcp');
+
         let backNineHcpHTML = '<th scope="row">Handicap</th>';
         for (let i = 9; i < 18; i++) {
             const teeType = holes[i].teeBoxes[currentTeeType];
             const hcp = teeType.hcp;
-            backNineHcpHTML += `<td scope="row">${hcp}</td>`;
+            backNineHcpHTML += `<td class="hcpIn" scope="row">${hcp}</td>`;
         }
-        backNineHcpHTML += `<th id="backHcpIn" scope="row"></th>
-            <th id="backHcpTotal" scope="row"></th>`;
+        backNineHcpHTML += `<th id="hcpIn" scope="row"></th>
+            <th id="hcpTotal" scope="row"></th>`;
         document.getElementById('backHandicap').innerHTML = backNineHcpHTML;
+
+        inTotal('hcp');
+        completeTotal('hcp');
     });
 }
 
@@ -143,6 +162,7 @@ function playerRender() {
         }
         frontNinePlayerRowHTML.innerHTML += `<td id="${player.name}Out"></td>`;
         document.getElementById('frontNine').appendChild(frontNinePlayerRowHTML);
+
         let backNinePlayerRowHTML = document.createElement('tr')
         backNinePlayerRowHTML.innerHTML = `<th scope="row">${player.name}</th>`;
         for (let i = 10; i < 19; i++) {
@@ -158,8 +178,34 @@ function tableRender() {
     handicapRender();
     playerRender();
 }
-function addScore() {
 
+function outTotal(row) {
+    let total = 0;
+    let rowData = document.getElementsByClassName(`${row}Out`);
+    for (let td of rowData) {
+        let cellValue = parseInt(td.innerText);
+        total += cellValue;
+    }
+    let outCell = document.getElementById(`${row}Out`);
+    outCell.innerText = total;
+}
+
+function inTotal(row) {
+    let total = 0;
+    let rowData = document.getElementsByClassName(`${row}In`);
+    for (let td of rowData) {
+        let cellValue = parseInt(td.innerText);
+        total += cellValue;
+    }
+    let outCell = document.getElementById(`${row}In`);
+    outCell.innerText = total;
+}
+
+function completeTotal(row) {
+    let totalIn = parseInt(document.getElementById(`${row}In`).innerText);
+    let totalOut = parseInt(document.getElementById(`${row}Out`).innerText);
+    let totalCell = document.getElementById(`${row}Total`);
+    totalCell.innerText = totalOut + totalIn;
 }
 
 function save() {
